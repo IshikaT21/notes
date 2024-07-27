@@ -39,4 +39,38 @@ const deleteNoteById = (req, res) => {
   }
 };
 
-module.exports = { createNote, getAllNotes, deleteNoteById };
+const updateNoteById = (req, res) => {
+  try {
+    const { title, content, tags } = req.body;
+    const note = notes.find((note) => note.id === req.params.id);
+    if (note) {
+      note.title = title;
+      note.content = content;
+      note.tags = tags;
+      res.json(note);
+    } else {
+      res.status(404).json({ message: "Note not found" });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getNoteById = (req, res) => {
+  try {
+    const note = notes.find((note) => note.id === req.params.id);
+    if (note) {
+      res.json({ note });
+    } else {
+      res.status(404).json({ message: "Note not found" });
+    }
+  } catch (error) {}
+};
+
+module.exports = {
+  createNote,
+  getAllNotes,
+  deleteNoteById,
+  updateNoteById,
+  getNoteById,
+};
