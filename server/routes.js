@@ -7,7 +7,7 @@ const {
   getNoteById,
 } = require("./Controllers/notes");
 
-const { addTags, deleteTags } = require("./Controllers/tags");
+const { addTags, deleteTags, query } = require("./Controllers/tags");
 
 const router = express.Router();
 
@@ -18,5 +18,6 @@ router.put("/updateNote/:id", updateNoteById);
 router.get("/getNoteById/:id", getNoteById);
 router.put("/addTag/:id", addTags);
 router.delete("/deleteTag/:id", deleteTags);
+router.get("/query", query);
 
 module.exports = router;
