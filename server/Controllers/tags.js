@@ -1,5 +1,6 @@
 const notes = require("./Data/data");
 
+// Function to add tags to a note
 const addTags = (req, res) => {
   const { tags } = req.body;
   const note = notes.find((note) => note.id === req.params.id);
@@ -11,6 +12,7 @@ const addTags = (req, res) => {
   }
 };
 
+// Function to delete a Tag from a note
 const deleteTags = (req, res) => {
   const { tags } = req.body;
   const note = notes.find((note) => note.id === req.params.id);
@@ -22,6 +24,7 @@ const deleteTags = (req, res) => {
   }
 };
 
+//Function for complex queries based on tags for a note
 const query = (req, res) => {
   try {
     const { query } = req.body;
@@ -31,11 +34,14 @@ const query = (req, res) => {
       const orTags = query.or || [];
       const notTags = query.not || [];
 
+      //AND Condition
       const matchesAnd = andTags.every((tag) => note.tags.includes(tag));
 
+      //OR Condition
       const matchesOr =
         orTags.length === 0 || orTags.some((tag) => note.tags.includes(tag));
 
+      //NOT Condition
       const matchesNot = notTags.every((tag) => !note.tags.includes(tag));
 
       return matchesAnd && matchesOr && matchesNot;

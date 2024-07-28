@@ -2,6 +2,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const notes = require("./Data/data");
 
+//Function to create a new Note
 const createNote = async (req, res) => {
   try {
     const { title, content, tags } = req.body;
@@ -18,10 +19,12 @@ const createNote = async (req, res) => {
   }
 };
 
+////Function to get all Notes
 const getAllNotes = (req, res) => {
   res.status(200).json({ notes });
 };
 
+//Function to delete a Note
 const deleteNoteById = (req, res) => {
   try {
     const noteId = req.params.id;
@@ -39,6 +42,7 @@ const deleteNoteById = (req, res) => {
   }
 };
 
+//Function to update a Note
 const updateNoteById = (req, res) => {
   try {
     const { title, content, tags } = req.body;
@@ -56,6 +60,7 @@ const updateNoteById = (req, res) => {
   }
 };
 
+//Function to get a Note based on it's ID
 const getNoteById = (req, res) => {
   try {
     const note = notes.find((note) => note.id === req.params.id);

@@ -11,6 +11,7 @@ const { addTags, deleteTags, query } = require("./Controllers/tags");
 
 const router = express.Router();
 
+//Defining Routes
 router.post("/notes", createNote);
 router.get("/notes", getAllNotes);
 router.delete("/notes/:id", deleteNoteById);
