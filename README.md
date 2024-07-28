@@ -20,6 +20,14 @@ A RESTful API for a note-taking application with tag management and complex quer
 
 - **POST http://localhost:3000/api/notes**
   - Create a new note.
+ 
+  **Example Payload**
+   {
+    "title" : "Note1",
+    "content": "First Note",
+    "tags" : ["tag1", "tag2", "tag3"]
+   }
+  
     
 - **GET http://localhost:3000/api/notes**
   - Retrieve all notes.
